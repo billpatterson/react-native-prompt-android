@@ -183,7 +183,9 @@ public class RNPromptModule extends ReactContextBaseJavaModule implements Lifecy
             PromptFragmentListener actionListener =
                 actionCallback != null ? new PromptFragmentListener(actionCallback) : null;
 
-            final RNPromptFragment promptFragment = new RNPromptFragment(actionListener, arguments);
+            RNPromptFragment promptFragment = new RNPromptFragment();
+            promptFragment.setListener(actionListener);
+            promptFragment.setArguments(arguments);
             if (isInForeground) {
                 if (arguments.containsKey(KEY_CANCELABLE)) {
                     promptFragment.setCancelable(arguments.getBoolean(KEY_CANCELABLE));
